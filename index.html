@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Henry Your Friend ✨</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #a1c4fd 100%);
+      color: #2d3748;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 15px;
+    }
+    .card {
+      background: #ffffff;
+      padding: 28px 24px;
+      border-radius: 28px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 15px 35px rgba(255, 105, 135, 0.25);
+      text-align: center;
+    }
+    .mascot {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 10px;
+      animation: bounce 2s infinite ease-in-out;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    h1 { color: #ff5e7e; font-size: 28px; margin: 5px 0; }
+    p.subtitle { color: #718096; font-size: 15px; margin-bottom: 20px; }
+    input[type="text"] {
+      width: 85%;
+      padding: 14px;
+      border-radius: 16px;
+      border: 3px solid #fbd3e9;
+      font-size: 16px;
+      margin-bottom: 12px;
+      text-align: center;
+      outline: none;
+    }
+    button {
+      background: linear-gradient(135deg, #ff6b8b, #ff8e53);
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 18px;
+      font-size: 17px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 8px;
+      box-shadow: 0 5px 0 #d94862;
+    }
+    button:active { transform: translateY(4px); box-shadow: 0 1px 0 #d94862; }
+    .option-btn {
+      background: #f7fafc;
+      color: #2d3748;
+      border: 2px solid #e2e8f0;
+      box-shadow: 0 4px 0 #cbd5e0;
+      text-align: left;
+      padding: 13px 16px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    .hidden { display: none; }
+    .badge {
+      display: inline-block;
+      background: #fefcbf;
+      color: #b7791f;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="mascot">
+      <svg viewBox="0 0 120 120" width="100" height="100">
+        <circle cx="30" cy="30" r="16" fill="#ffb703"/>
+        <circle cx="90" cy="30" r="16" fill="#ffb703"/>
+        <circle cx="60" cy="65" r="42" fill="#ffd166"/>
+        <ellipse cx="36" cy="70" rx="7" ry="4" fill="#ff758f" opacity="0.7"/>
+        <ellipse cx="84" cy="70" rx="7" ry="4" fill="#ff758f" opacity="0.7"/>
+        <circle cx="45" cy="58" r="5" fill="#2d3748"/>
+        <circle cx="75" cy="58" r="5" fill="#2d3748"/>
+        <path id="mouth" d="M 48 74 Q 60 86 72 74" stroke="#2d3748" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <h1>Henry Your Friend</h1>
+    <p class="subtitle" id="sub-text">Enter your name and confirm to start!</p>
+
+    <!-- Step 1: Enter Name -->
+    <div id="start-screen">
+      <input type="text" id="friendName" placeholder="Type your name here..." onkeydown="if(event.key==='Enter') confirmName()">
+      <button type="button" onclick="confirmName()">Confirm Name ✅</button>
+    </div>
+
+    <!-- Step 2: Confirm Welcome Box -->
+    <div id="confirm-screen" class="hidden">
+      <h2 id="welcome-msg" style="color: #ff5e7e;"></h2>
+      <p style="color: #4a5568;">Ready to see how well you know Henry?</p>
+      <button type="button" onclick="startQuiz()">Yes, Start Quiz! 🚀</button>
+    </div>
+
+    <!-- Step 3: Quiz Screen -->
+    <div id="quiz-screen" class="hidden">
+      <div class="badge" id="q-counter">Question 1 of 4</div>
+      <h3 id="question-text" style="font-size: 20px;"></h3>
+      <div id="options-box"></div>
+    </div>
+
+    <!-- Step 4: Result Screen -->
+    <div id="result-screen" class="hidden">
+      <div class="badge">🎉 Finished! 🎉</div>
+      <h2 id="result-title" style="color: #ff5e7e;"></h2>
+      <p id="result-msg" style="font-size: 16px; line-height: 1.5;"></p>
+      <button type="button" onclick="location.reload()">Play Again 🔄</button>
+    </div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        q: "🥦 What is my favorite dish to eat?",
+        options: ["🍕 Cheesy Pizza", "🥗 Tasty Vegetables", "🍜 Spicy Noodles", "🍗 Fried Chicken"],
+        answer: 1
+      },
+      {
+        q: "🎮 What game do I love playing?",
+        options: ["⛏️ Minecraft", "⚽ Football", "🏎️ Car Racing", "🧩 Puzzle Games"],
+        answer: 0
+      },
+      {
+        q: "💻 What is my cool free-time habit?",
+        options: ["😴 Sleeping all day", "📺 Watching YouTube", "🐍 Coding in Python", "🏃 Running outside"],
+        answer: 2
+      },
+      {
+        q: "🗣️ Which language can I greet you in?",
+        options: ["🇫🇷 French", "✨ Mizo (Chibai le!)", "🇪🇸 Spanish", "🇯🇵 Japanese"],
+        answer: 1
+      }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+    let playerName = "Friend";
+
+    function confirmName() {
+      const input = document.getElementById("friendName").value.trim();
+      if (input !== "") {
+        playerName = input;
+      }
+      document.getElementById("start-screen").classList.add("hidden");
+      document.getElementById("confirm-screen").classList.remove("hidden");
+      document.getElementById("welcome-msg").innerText = "Chibai le, " + playerName + "! 👋";
+    }
+
+    function startQuiz() {
+      document.getElementById("confirm-screen").classList.add("hidden");
+      document.getElementById("quiz-screen").classList.remove("hidden");
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const item = quizData[currentQ];
+      document.getElementById("q-counter").innerText = "Question " + (currentQ + 1) + " of " + quizData.length;
+      document.getElementById("question-text").innerText = item.q;
+      document.getElementById("mouth").setAttribute("d", "M 48 74 Q 60 86 72 74");
+
+      const box = document.getElementById("options-box");
+      box.innerHTML = "";
+
+      for (let i = 0; i < item.options.length; i++) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option-btn";
+        btn.innerText = item.options[i];
+        btn.onclick = function() { checkAnswer(i); };
+        box.appendChild(btn);
+      }
+    }
+
+    function checkAnswer(selectedIndex) {
+      if (selectedIndex === quizData[currentQ].answer) {
+        score++;
+        document.getElementById("mouth").setAttribute("d", "M 45 72 Q 60 95 75 72 Z");
+      } else {
+        document.getElementById("mouth").setAttribute("d", "M 54 76 A 6 6 0 1 0 66 76 A 6 6 0 1 0 54 76");
+      }
+
+      setTimeout(function() {
+        currentQ++;
+        if (currentQ < quizData.length) {
+          showQuestion();
+        } else {
+          showResult();
+        }
+      }, 400);
+    }
+
+    function showResult() {
+      document.getElementById("quiz-screen").classList.add("hidden");
+      document.getElementById("result-screen").classList.remove("hidden");
+      document.getElementById("result-title").innerText = playerName + ": " + score + " / " + quizData.length + " ⭐";
+
+      let msg = "";
+      if (score === quizData.length) {
+        msg = "Chibai le " + playerName + "! 🏆 You are Henry's #1 Best Friend!";
+      } else if (score >= 2) {
+        msg = "Yay " + playerName + "! 😊 You know Henry pretty well!";
+      } else {
+        msg = "Oops " + playerName + "! 🙈 We need to hang out more!";
+      }
+      document.getElementById("result-msg").innerText = msg;
+    }
+  </script>
+
+</body>
+</html>
