@@ -171,7 +171,6 @@
       <p style="font-size: 14px;" id="share-desc">Send this link to your friends on WhatsApp or Instagram:</p>
       <div class="link-box" id="generated-link"></div>
       <button type="button" class="whatsapp-btn" id="btn-wa" onclick="shareWhatsApp()">Share on WhatsApp 💬</button>
-      <button type="button" id="btn-copy" onclick="copyLink()">Copy Link 📋</button>
       <button type="button" class="secondary-btn" id="btn-test" onclick="previewQuiz()">Test Play My Quiz 🎮</button>
     </div>
 
@@ -199,7 +198,7 @@
   </div>
 
   <script>
-    let lang = "en"; // "en" = English, "mz" = Mizo
+    let lang = "en";
 
     const content = {
       en: {
@@ -211,7 +210,6 @@
         badgeReady: "🎉 Your 8-Question Link is Ready! 🎉",
         shareDesc: "Send this link to your friends on WhatsApp or Instagram:",
         btnWa: "Share on WhatsApp 💬",
-        btnCopy: "Copy Link 📋",
         btnTest: "Test Play My Quiz 🎮",
         friendPlaceholder: "Enter your name to play...",
         btnStart: "Confirm & Start 8-Question Quiz! 🚀",
@@ -219,8 +217,8 @@
         btnOwn: "Now Create YOUR Own 8-Question Quiz! ✨",
         questions: [
           { label: "1. What is YOUR favorite food?", ask: "1. What is CREATOR's favorite food?", opts: ["🍕 Cheesy Pizza", "🥗 Tasty Vegetables", "🍜 Spicy Noodles", "🍗 Fried Chicken"] },
-          { label: "2. What game do YOU like best?", ask: "2. What game does CREATOR love playing?", opts: ["⛏️ Minecraft", "⚽ Football / Sports", "🏎️ Car Racing", "🎯 BGMI / Free Fire"] },
-          { label: "3. What is YOUR favorite free-time habit?", ask: "3. What is CREATOR's favorite free-time habit?", opts: ["😴 Sleeping all day", "📺 Watching YouTube", "🐍 Coding in Python", "🎵 Listening to Music"] },
+          { label: "2. What game do YOU like best?", ask: "2. What game does CREATOR love playing?", opts: ["⛏️ Minecraft", "⚽ Football / Sports", "Mobile Legend", "🎯 BGMI / Free Fire"] },
+          { label: "3. What is YOUR favorite free-time habit?", ask: "3. What is CREATOR's favorite free-time habit?", opts: ["😴 Sleeping all day", "📺 Watching YouTube", "🐍 Studying", "🎵 Listening to Music"] },
           { label: "4. What is YOUR favorite drink?", ask: "4. What is CREATOR's favorite drink?", opts: ["🧋 Cold Coffee", "🥭 Mango Juice", "☕ Milk Tea / Chai", "💧 Plain Cold Water"] },
           { label: "5. What is YOUR favorite color?", ask: "5. What is CREATOR's favorite color?", opts: ["🔵 Blue", "⚫ Black", "🔴 Red", "🟢 Green"] },
           { label: "6. Which superpower would YOU pick?", ask: "6. Which superpower would CREATOR pick?", opts: ["👻 Invisibility", "🦅 Flying", "⏳ Time Travel", "⚡ Super Speed"] },
@@ -233,11 +231,10 @@
         subCreate: "I ṭhiante thawn turin heng zawhna 8 te hi chhang hmasa rawh!",
         nameLabel: "I Hming:",
         namePlaceholder: "I hming ziak rawh (entirnan: Henry)",
-        btnCreate: "Ka Link Siam Rawh 🔗",
-        badgeReady: "🎉 I Quiz Link A Peih Ta! 🎉",
-        shareDesc: "He link hi i ṭhiante WhatsApp emaw Instagram-ah thawn rawh:",
+        btnCreate: "I Link Siam Rawh 🔗",
+        badgeReady: "🎉 I Quiz Link A Theih Ta! 🎉",
+        shareDesc: "He link hi i ṭhiante WhatsApp emaw Instagram-ah i thawn thei e:",
         btnWa: "WhatsApp-ah Thawn Rawh 💬",
-        btnCopy: "Link Copy Rawh 📋",
         btnTest: "Keimah-in Chhin Rawh 🎮",
         friendPlaceholder: "I hming ziak la khel rawh...",
         btnStart: "Confirm & Khel Ṭan Rawh! 🚀",
@@ -245,3 +242,221 @@
         btnOwn: "I Ta Tur Quiz Siam Ve Rawh! ✨",
         questions: [
           { label: "1. I chaw / eitur duh ber eng nge?", ask: "1. CREATOR-a chaw / eitur duh ber eng nge?", opts: ["🍕 Pizza", "🥗 Thlai hnah (Vegetables)", "🍜 Noodles", "🍗 Arsa kan (Fried Chicken)"] },
+          { label: "2. Eng game nge khelh nuam i tih ber?", ask: "2. CREATOR-an eng game nge a khelh nuam tih ber?", opts: ["⛏️ Minecraft", "⚽ Football / Infiamna", "Mobile Legend", "🎯 BGMI / Free Fire"] },
+          { label: "3. Hun awl i neih hian eng nge i tih ber ṭhin?", ask: "3. CREATOR-an hun awl a neih hian eng nge a tih ber ṭhin?", opts: ["😴 Mut char char", "📺 YouTube en", "🐍 Lehkha zir", "🎵 Hla ngaihthlak"] },
+          { label: "4. In tur (drink) eng nge i duh ber?", ask: "4. CREATOR-an in tur eng nge a duh ber?", opts: ["🧋 Cold Coffee", "🥭 Mango Juice", "☕ Thingpui (Milk Tea)", "💧 Tui vawt pangngai"] },
+          { label: "5. Eng rawng (color) nge i duh ber?", ask: "5. CREATOR-an eng rawng nge a duh ber?", opts: ["🔵 A pawl (Blue)", "⚫ A dum (Black)", "🔴 A sen (Red)", "🟢 A hring (Green)"] },
+          { label: "6. Superpower pakhat nei thei la eng nge i thlan ang?", ask: "6. CREATOR-an superpower eng nge a thlan ang?", opts: ["👻 Hmuh theih loh (Invisibility)", "🦅 Thlawh theihna (Flying)", "⏳ Hun kal tawh/lo la awm kal (Time Travel)", "⚡ Chak taka tlan (Super Speed)"] },
+          { label: "7. Khawi hmunah nge len / awm nuam i tih ber?", ask: "7. CREATOR-an khawi hmunah nge len nuam a tih ber?", opts: ["⛰️ Tlang leh ramhnuai", "🏖️ Tuipui kam (Beach)", "🎮 Gaming Cafe", "🏠 In-a awm hahdam"] },
+          { label: "8. Zing tho hma mi nge zan meng rei mi i nih?", ask: "8. CREATOR hi zing tho hma mi nge zan meng rei mi?", opts: ["🌅 Zing tho hma mi", "🦉 Zan meng rei mi", "😴 Mut duh reng mi", "🔄 A hun a zir zelin"] }
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    let creator = params.get("n");
+    let ansCode = params.get("a");
+    if (params.get("l") === "mz") lang = "mz";
+
+    let correctAnswers = [];
+    let shareableURL = "";
+    let currentQ = 0;
+    let score = 0;
+    let friendName = "Friend";
+    let isPlayMode = false;
+
+    if (creator !== null && ansCode !== null && ansCode.length === 8) {
+      isPlayMode = true;
+      for (let i = 0; i < 8; i++) {
+        correctAnswers.push(parseInt(ansCode.charAt(i)));
+      }
+      document.getElementById("create-screen").classList.add("hidden");
+      document.getElementById("play-start-screen").classList.remove("hidden");
+    }
+
+    function renderUI() {
+      const c = content[lang];
+      document.getElementById("lang-toggle").innerText = c.toggleBtn;
+      document.getElementById("btn-create").innerText = c.btnCreate;
+      document.getElementById("badge-ready").innerText = c.badgeReady;
+      document.getElementById("share-desc").innerText = c.shareDesc;
+      document.getElementById("btn-wa").innerText = c.btnWa;
+      document.getElementById("btn-test").innerText = c.btnTest;
+      document.getElementById("friendName").placeholder = c.friendPlaceholder;
+      document.getElementById("btn-start").innerText = c.btnStart;
+      document.getElementById("badge-done").innerText = c.badgeDone;
+      document.getElementById("btn-own").innerText = c.btnOwn;
+
+      if (isPlayMode) {
+        document.getElementById("app-title").innerText = lang === "mz"
+          ? creator + " I Hrechiang Em?"
+          : "How Well Do You Know " + creator + "?";
+        document.getElementById("sub-text").innerText = lang === "mz"
+          ? creator + "-an zawhna 8 a siam che!"
+          : creator + " challenged you to 8 questions!";
+        if (!document.getElementById("quiz-screen").classList.contains("hidden")) {
+          showQuestion();
+        }
+      } else {
+        document.getElementById("app-title").innerText = "Henry Your Friend";
+        document.getElementById("sub-text").innerText = c.subCreate;
+        buildForm();
+      }
+    }
+
+    function buildForm() {
+      const c = content[lang];
+      const savedName = document.getElementById("creatorName") ? document.getElementById("creatorName").value : "";
+      const savedVals = [];
+      for (let i = 0; i < 8; i++) {
+        const el = document.getElementById("q_" + i);
+        savedVals.push(el ? el.value : "0");
+      }
+
+      const formContainer = document.getElementById("creator-questions");
+      formContainer.innerHTML = "";
+
+      const nameLbl = document.createElement("label");
+      nameLbl.innerText = c.nameLabel;
+      const nameInp = document.createElement("input");
+      nameInp.type = "text";
+      nameInp.id = "creatorName";
+      nameInp.placeholder = c.namePlaceholder;
+      nameInp.value = savedName;
+      formContainer.appendChild(nameLbl);
+      formContainer.appendChild(nameInp);
+
+      c.questions.forEach((item, idx) => {
+        const lbl = document.createElement("label");
+        lbl.innerText = item.label;
+        const sel = document.createElement("select");
+        sel.id = "q_" + idx;
+        item.opts.forEach((optText, optIdx) => {
+          const opt = document.createElement("option");
+          opt.value = optIdx;
+          opt.innerText = optText;
+          sel.appendChild(opt);
+        });
+        sel.value = savedVals[idx];
+        formContainer.appendChild(lbl);
+        formContainer.appendChild(sel);
+      });
+    }
+
+    function toggleLanguage() {
+      lang = (lang === "en") ? "mz" : "en";
+      renderUI();
+    }
+
+    function getCleanBaseUrl() {
+      const href = window.location.href;
+      const qIndex = href.indexOf("?");
+      return qIndex === -1 ? href : href.substring(0, qIndex);
+    }
+
+    function generateLink() {
+      let nameInput = document.getElementById("creatorName").value.trim();
+      if (nameInput === "") nameInput = "Henry";
+
+      let code = "";
+      for (let i = 0; i < 8; i++) {
+        code += document.getElementById("q_" + i).value;
+      }
+
+      shareableURL = getCleanBaseUrl() + "?n=" + encodeURIComponent(nameInput) + "&a=" + code + "&l=" + lang;
+
+      document.getElementById("create-screen").classList.add("hidden");
+      document.getElementById("share-screen").classList.remove("hidden");
+      document.getElementById("generated-link").innerText = shareableURL;
+    }
+
+    function shareWhatsApp() {
+      const text = lang === "mz"
+        ? "Chibai! 'Henry Your Friend' quiz-ah hian min hriatchian dan lo test ve teh: " + shareableURL
+        : "Hey! Take my 8-question friendship quiz on 'Henry Your Friend' and see how well you know me: " + shareableURL;
+      window.open("https://whatsapp.com" + encodeURIComponent(text), "_blank");
+    }
+
+    function previewQuiz() {
+      window.location.href = shareableURL;
+    }
+
+    function startQuiz() {
+      const input = document.getElementById("friendName").value.trim();
+      if (input !== "") friendName = input;
+      document.getElementById("play-start-screen").classList.add("hidden");
+      document.getElementById("quiz-screen").classList.remove("hidden");
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const item = content[lang].questions[currentQ];
+      document.getElementById("q-counter").innerText = (lang === "mz" ? "Zawhna " : "Question ") + (currentQ + 1) + " / 8";
+      document.getElementById("progress-bar").style.width = ((currentQ / 8) * 100) + "%";
+      document.getElementById("question-text").innerText = item.ask.replace("CREATOR", creator);
+      document.getElementById("mouth").setAttribute("d", "M 48 74 Q 60 86 72 74");
+
+      const box = document.getElementById("options-box");
+      box.innerHTML = "";
+
+      for (let i = 0; i < item.opts.length; i++) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option-btn";
+        btn.innerText = item.opts[i];
+        btn.onclick = function() { checkAnswer(i); };
+        box.appendChild(btn);
+      }
+    }
+
+    function checkAnswer(selected) {
+      if (selected === correctAnswers[currentQ]) {
+        score++;
+        document.getElementById("mouth").setAttribute("d", "M 45 72 Q 60 95 75 72 Z");
+      } else {
+        document.getElementById("mouth").setAttribute("d", "M 54 76 A 6 6 0 1 0 66 76 A 6 6 0 1 0 54 76");
+      }
+
+      setTimeout(function() {
+        currentQ++;
+        if (currentQ < 8) {
+          showQuestion();
+        } else {
+          showResult();
+        }
+      }, 380);
+    }
+
+    function showResult() {
+      document.getElementById("quiz-screen").classList.add("hidden");
+      document.getElementById("result-screen").classList.remove("hidden");
+      document.getElementById("result-title").innerText = friendName + ": " + score + " / 8 ⭐";
+
+      if (lang === "mz") {
+        if (score >= 7) {
+          document.getElementById("result-msg").innerText = "Chibai le " + friendName + "! 🏆 Ṭhian ṭha ber i ni! " + creator + " hi i hrechiang hle mai!";
+        } else if (score >= 4) {
+          document.getElementById("result-msg").innerText = "I ti ṭha e " + friendName + "! 😊 " + creator + " hi i hre ve nual mai!";
+        } else {
+          document.getElementById("result-msg").innerText = "Eheu " + friendName + "! 🙈 " + score + "/8 chauh maw? " + creator + " nen inkawm tam deuh in ngai!";
+        }
+      } else {
+        if (score >= 7) {
+          document.getElementById("result-msg").innerText = "Chibai le " + friendName + "! 🏆 True Best Friend! You know " + creator + " inside and out!";
+        } else if (score >= 4) {
+          document.getElementById("result-msg").innerText = "Nice job " + friendName + "! 😊 You know " + creator + " pretty well!";
+        } else {
+          document.getElementById("result-msg").innerText = "Oops " + friendName + "! 🙈 Only " + score + "/8? You and " + creator + " need to hang out way more!";
+        }
+      }
+    }
+
+    function makeMyOwn() {
+      window.location.href = getCleanBaseUrl();
+    }
+
+    renderUI();
+  </script>
+
+</body>
+</html>
